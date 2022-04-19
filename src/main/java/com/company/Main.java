@@ -24,6 +24,9 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
+
+
+
         openConnectionDB();
 
         //тест для нахождения ошибки пустого поля (пока только этой ошибки
@@ -88,7 +91,7 @@ public class Main {
 
     public static void closeConnectionDB() throws SQLException{
 
-        connectionDB.close();
+        connectionDB.close();//wq
 
     }
 
