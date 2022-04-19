@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="xaxaton_prog:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/xaxaton_prog_jar</output-path>
+    <root id="archive" name="xaxaton_prog.jar">
+      <element id="module-output" name="xaxaton_prog" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/json-20220320.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/src/postgresql-42.3.4.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
