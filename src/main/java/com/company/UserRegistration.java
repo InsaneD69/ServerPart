@@ -3,6 +3,8 @@ package com.company;
 
 import org.json.JSONObject;
 
+import java.sql.SQLException;
+
 
 public class UserRegistration {
 
@@ -10,38 +12,44 @@ public class UserRegistration {
     JSONObject jsonObject;
 
 
-        public UserRegistration(JSONObject jsonObject){
+        public UserRegistration(JSONObject jsonObject) throws SQLException {
 
             this.jsonObject=jsonObject;
             getUserRegistration();
+
         }
 
-       public void getUserRegistration(){
-
-          if(jsonObject.isEmpty()){
-
-              //сообщение клиенту об ошибке запроса
-          }
-
-
+       public void getUserRegistration() throws SQLException {
 
 
         CheckUserData checkUserData = new CheckUserData(jsonObject);
 
-        if(checkUserData.errorLogs!=null){
+        if(checkUserData.logs!=null){//отправlяем в клиент ошибкт, если они есть
 
-            checkUserData.errorLogs.forEach(System.out::println);
+            checkUserData.logs.forEach(System.out::println);
 
-            //отправlяем в клиент ошибки
 
+            return;
 
         }
+
+
+
+
+
+
+
+
+
 
 
         //отправка на сервер информации, если нету ошибок
 
 
       }
+
+
+
 
 
 

@@ -3,25 +3,46 @@ package com.company;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.SQLException;
 import java.util.*;
 
 public class CheckUserData {
 
      JSONObject jsonObject;
 
-     public ArrayList<String> errorLogs=new ArrayList<>();
+     public ArrayList<String> logs=new ArrayList<>();
 
 
 
-     public  CheckUserData(JSONObject jsonObject){
+     public  CheckUserData(JSONObject jsonObject) throws SQLException {
 
          this.jsonObject=jsonObject;
 
-         EnumSet.allOf(LocaleFields.class).forEach(field->{
+         EnumSet.allOf(LocaleFields.class).forEach(field->{  //проверка заполненности всех полей после передачи
 
              checkNotNullField(String.valueOf(field));
 
          });
+
+            //проверка уникального названия компаниии
+        if( CheckValueInDB.checkUniquenessValue(LocaleFields.nameCompany.name(),jsonObject.getString("nameCompany"))){
+
+            logs.add("Компания с названием "+jsonObject.getString("nameCompany")+" уже существует");
+         }
+
+         //проверка уникального инн компаниии
+        if( CheckValueInDB.checkUniquenessValue(LocaleFields.INN.name(),jsonObject.getString("INN"))){
+
+            logs.add("ИНН "+jsonObject.getString("INN")+" уже был зарегестрированн");
+
+        }
+         //проверка уникального огрн компаниии
+         if( CheckValueInDB.checkUniquenessValue(LocaleFields.OGRN.name(),jsonObject.getString("OGRN"))){
+
+             logs.add("ОГРН "+jsonObject.getString("OGRN")+" уже был зарегестрированн");
+
+         }
+
 
 
      }
@@ -35,7 +56,7 @@ public class CheckUserData {
 
         } catch (JSONException e){
 
-            errorLogs.add(  "Ошибка в поле: "+LocaleFields.valueOf(key).ruLocale+ " - поле пустое");
+            logs.add(  "Ошибка в поле: "+LocaleFields.valueOf(key).ruLocale+ " - поле пустое");
 
 
         }
@@ -45,12 +66,7 @@ public class CheckUserData {
 
 
 
-     public void checkUniquenessOfTheCompanyName (JSONObject jsonObject){
 
-
-
-
-    }
 
 
 
