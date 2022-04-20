@@ -40,7 +40,7 @@ public class UserRegistration {
 
 
 
-        SQLQueries.createNewUser(jsonObject);
+           //  SQLQueries.createNewUser(jsonObject);
 
 
 

@@ -12,7 +12,8 @@ public enum LocaleFields {
     dateOfRegistration("Дата регистрации"),
     INN("ИНН"),
     OGRN("ОГРН"),
-    KPP("КПП");
+    KPP("КПП"),
+    password("Пароль");
 
    public String ruLocale;
 

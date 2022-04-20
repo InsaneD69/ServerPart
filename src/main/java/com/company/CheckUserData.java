@@ -23,6 +23,11 @@ public class CheckUserData {
              checkNotNullField(String.valueOf(field));
 
          });
+         if( CheckValueInDB.checkUniquenessValue(LocaleFields.email.name(),jsonObject.getString("email"))){
+
+             logs.add("Почта "+jsonObject.getString("INN")+" уже занята");
+
+         }
 
             //проверка уникального названия компаниии
         if( CheckValueInDB.checkUniquenessValue(LocaleFields.nameCompany.name(),jsonObject.getString("nameCompany"))){
@@ -42,6 +47,8 @@ public class CheckUserData {
              logs.add("ОГРН "+jsonObject.getString("OGRN")+" уже был зарегестрированн");
 
          }
+
+
 
 
 

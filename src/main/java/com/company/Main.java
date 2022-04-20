@@ -48,6 +48,7 @@ public class Main {
         jsonobject.put(LocaleFields.KPP.name(), "236ert5432");
         jsonobject.put(LocaleFields.phoneNumber.name(), "324324ert342");
         jsonobject.put(LocaleFields.dateOfRegistration.name(),"12:22 12.12.2000");
+        jsonobject.put(LocaleFields.password.name(), "qwr3fvewr");
 
                                                                   //отсутствует заполнение поля с датой  регистрации
         UserRegistration userRegistration = new UserRegistration(jsonobject);

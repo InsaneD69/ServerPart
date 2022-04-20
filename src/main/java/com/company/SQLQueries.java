@@ -17,7 +17,7 @@ public class SQLQueries {
     static public void createNewUser(JSONObject jsonObject) throws SQLException {
 
 
-        String query ="insert into \"UserSignDataTable\" "+" (" +
+        String signDataQuery ="insert into \"UserSignDataTable\" "+" (" +
                 "\"FCsGenDirector\"," +
                 "\"INN\"," +
                 "\"KPP\"," +
@@ -32,24 +32,42 @@ public class SQLQueries {
                 " values (?,?,?,?,?,?,?,?,?,?,?)";
 
 
-        PreparedStatement preparedStatement=connectionDB.prepareStatement(query);
+        String authDataQuery ="insert into \"UserAuthData\" "+" (" +
+                "\"email\"," +
+                "\"password\")" +
+                " values (?,?)";
+
+        PreparedStatement preparedStatementSign=connectionDB.prepareStatement(signDataQuery);
+
+        preparedStatementSign.setString(1,jsonObject.getString("FCsGenDirector"));
+        preparedStatementSign.setString(2,jsonObject.getString("INN"));
+        preparedStatementSign.setString(3,jsonObject.getString("KPP"));
+        preparedStatementSign.setString(4,jsonObject.getString("OGRN"));
+        preparedStatementSign.setString(5,jsonObject.getString("dateOfRegistration"));
+        preparedStatementSign.setString(6,jsonObject.getString("email"));
+        preparedStatementSign.setBoolean(7,jsonObject.getBoolean("isCustomer"));
+        preparedStatementSign.setBoolean(8,jsonObject.getBoolean("isSeller"));
+        preparedStatementSign.setString(9,jsonObject.getString("legalAddress"));
+        preparedStatementSign.setString(10,jsonObject.getString("nameCompany"));
+        preparedStatementSign.setString(11,jsonObject.getString("phoneNumber"));
+
+        int rowS = preparedStatementSign.executeUpdate();
+
+        System.out.println(rowS);
 
 
-        //preparedStatement.setInt(1,identifier);
-        preparedStatement.setString(1,jsonObject.getString("FCsGenDirector"));
-        preparedStatement.setString(2,jsonObject.getString("INN"));
-        preparedStatement.setString(3,jsonObject.getString("KPP"));
-        preparedStatement.setString(4,jsonObject.getString("OGRN"));
-        preparedStatement.setString(5,jsonObject.getString("dateOfRegistration"));
-        preparedStatement.setString(6,jsonObject.getString("email"));
-        preparedStatement.setBoolean(7,jsonObject.getBoolean("isCustomer"));
-        preparedStatement.setBoolean(8,jsonObject.getBoolean("isSeller"));
-        preparedStatement.setString(9,jsonObject.getString("legalAddress"));
-        preparedStatement.setString(10,jsonObject.getString("nameCompany"));
-        preparedStatement.setString(11,jsonObject.getString("phoneNumber"));
+        PreparedStatement preparedStatementAuth=connectionDB.prepareStatement(authDataQuery);
 
-        int row = preparedStatement.executeUpdate();
-        System.out.println(row);
+
+        preparedStatementAuth.setString(1,jsonObject.getString("email"));
+        preparedStatementAuth.setString(2,jsonObject.getString("password"));
+
+
+        int rowA = preparedStatementAuth.executeUpdate();
+        System.out.println(rowA);
+
+
+
     }
 
     public void deleteUser(){}
