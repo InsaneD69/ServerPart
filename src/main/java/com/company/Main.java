@@ -37,16 +37,17 @@ public class Main {
         //тест для нахождения ошибки пустого поля (пока только этой ошибки
         JSONObject jsonobject =new JSONObject()  {};
 
-        jsonobject.put(LocaleFields.nameCompany.name(),"Cringe");
-        jsonobject.put(LocaleFields.isCustomer.name(),0);
-        jsonobject.put(LocaleFields.isSeller.name(), 1);
-        jsonobject.put(LocaleFields.INN.name(), "21321314");
-        jsonobject.put(LocaleFields.OGRN.name(), "s");
-        jsonobject.put(LocaleFields.FCsGenDirector.name(), "21321314");
-        jsonobject.put(LocaleFields.email.name(), "qwerty@cringe.pzdc");
-        jsonobject.put(LocaleFields.legalAddress.name(), "qw er t io");
-        jsonobject.put(LocaleFields.KPP.name(), "iop");
-        jsonobject.put(LocaleFields.phoneNumber.name(), 0);
+        jsonobject.put(LocaleFields.nameCompany.name(),"rdrgen");
+        jsonobject.put(LocaleFields.isCustomer.name(),true);
+        jsonobject.put(LocaleFields.isSeller.name(), true);
+        jsonobject.put(LocaleFields.INN.name(), "5333dgf42");
+        jsonobject.put(LocaleFields.OGRN.name(), "3152ht34");
+        jsonobject.put(LocaleFields.FCsGenDirector.name(), "qa4zx");
+        jsonobject.put(LocaleFields.email.name(), "Qqwerty@crirretesnge.pzdc");
+        jsonobject.put(LocaleFields.legalAddress.name(), "qwqwefertser t io");
+        jsonobject.put(LocaleFields.KPP.name(), "236ert5432");
+        jsonobject.put(LocaleFields.phoneNumber.name(), "324324ert342");
+        jsonobject.put(LocaleFields.dateOfRegistration.name(),"12:22 12.12.2000");
 
                                                                   //отсутствует заполнение поля с датой  регистрации
         UserRegistration userRegistration = new UserRegistration(jsonobject);
@@ -57,14 +58,16 @@ public class Main {
         Statement statement = connectionDB.createStatement();
 
 
+
         ResultSet resultSet=statement.executeQuery("select * from "+nameInfoTable);
 
+
         while (resultSet.next()){
-            System.out.println(resultSet.getString("Id")+" "+resultSet.getString("nameCompany"));
+            System.out.println(resultSet.getString("UserId")+" "+resultSet.getString("nameCompany"));
         }
 
         //
-
+        statement.close();
 
         closeConnectionDB();
 

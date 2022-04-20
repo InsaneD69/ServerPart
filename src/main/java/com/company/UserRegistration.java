@@ -3,7 +3,10 @@ package com.company;
 
 import org.json.JSONObject;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import static com.company.Main.connectionDB;
 
 
 public class UserRegistration {
@@ -29,7 +32,7 @@ public class UserRegistration {
             checkUserData.logs.forEach(System.out::println);
 
 
-            return;
+            //return;
 
         }
 
@@ -37,7 +40,7 @@ public class UserRegistration {
 
 
 
-
+        SQLQueries.createNewUser(jsonObject);
 
 
 
